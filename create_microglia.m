@@ -3,22 +3,23 @@ clear all
 clc
 
 %% Stimulation signal script
-df = 10;
+df = 0;
 sdf = mat2str(df);
-carrier_f = [2000];
+carrier_f = [20:20:100];
 
 for i = 1:length(carrier_f)
 scf = mat2str(carrier_f(1,i));
 
-    amp(:,1) = [0.05:0.05:2]';
-    amp(:,2) = [0.05:0.05:2]';
+    amp(:,1) = [0.05:0.05:1]';
+    amp(:,2) = [0.05:0.05:1]';
 
 random_amp_pairs_1= amp;
-s = strcat('1_df_',sdf,'_1ep_',scf);
-ss = strcat('1_df_',sdf,'_1ep_intra_',scf);
 
-one_protocol_1 = random_amp_pairs_1;
-save(s, 'one_protocol_1');
+s = strcat('microglia_protocol','_1ep_',scf);
+ss = strcat('microglia_waveform','_1ep_',scf);
+
+protocol = random_amp_pairs_1;
+save(s, 'protocol');
 
 %% Create waveforms 
 % 1 electrode pair - quantum

@@ -3,22 +3,17 @@ clear all
 clc
 
 %% Stimulation signal script
-df = 10;
-sdf = mat2str(df);
-carrier_f = [2000];
 
-for i = 1:length(carrier_f)
-scf = mat2str(carrier_f(1,i));
+% Create stimulation protocol_1 with a random order 
 
-    amp(:,1) = [0.05:0.05:2]';
-    amp(:,2) = [0.05:0.05:2]';
+amp = [0.05, 0.35; 0.1, 0.3; 0.2, 0.2];
+for x = 1:length(amp)
+random_amp_pairs_1= amp(randperm(size(amp, 1)), :);
+end
 
-random_amp_pairs_1= amp;
-s = strcat('1_df_',sdf,'_1ep_',scf);
-ss = strcat('1_df_',sdf,'_1ep_intra_',scf);
+one_quantum = random_amp_pairs_1;
 
-one_protocol_1 = random_amp_pairs_1;
-save(s, 'one_protocol_1');
+save('1_quantum_2', 'one_quantum');
 
 %% Create waveforms 
 % 1 electrode pair - quantum
@@ -26,14 +21,11 @@ save(s, 'one_protocol_1');
 I1x = [];
 
 dt = 0.004;
-pulse_f = df;
+carrier_f = 2000;
+pulse_f = 10;
 
-f1 = carrier_f(1,i)/1000;
-if carrier_f(1,i) == df
-    f2 = df/1000;
-else
-    f2 = (carrier_f(1,i) + pulse_f)/1000;
-end
+f1 = carrier_f/1000;
+f2 = (carrier_f + pulse_f)/1000;
 
 ramp_up_t = 500; % ms
 ramp_down_t = 500;
@@ -96,9 +88,7 @@ figure,plot(I1x + I2x)
 
 I1 = I1x;
 I2 = I2x;
-save(ss,'I1','I2');
-clearvars amp
-end
+save('quantum_1ep_2','I1','I2');
 
 % %% Create waveforms 
 % % 2 electrode pair - quantum

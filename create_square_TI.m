@@ -13,9 +13,9 @@ scf = mat2str(carrier_f(1,i));
     amp(:,1) = [0.05:0.05:2]';
     amp(:,2) = [0.05:0.05:2]';
 
-random_amp_pairs_1= amp;
-s = strcat('1_df_',sdf,'_1ep_',scf);
-ss = strcat('1_df_',sdf,'_1ep_intra_',scf);
+random_amp_pairs_1 = amp;
+s = strcat('square_',sdf,'_1ep_',scf);
+ss = strcat('square_',sdf,'_1ep_',scf);
 
 one_protocol_1 = random_amp_pairs_1;
 save(s, 'one_protocol_1');
@@ -42,9 +42,6 @@ for a = 1:length(random_amp_pairs_1)
         
 A1 = random_amp_pairs_1(a,1);
 A2 = random_amp_pairs_1(a,2);
-
-phi1 = 0;
-phi2 = pi;
     
 each_stim_t = 6*1000; 
 each_break_t = 5*1000;
@@ -52,7 +49,7 @@ total_t = 71*1000;
 
 stim_tt = dt:dt:each_stim_t;
 
-I1_stim(a,:) = A1*cos(2*pi*f1*stim_tt+phi1) + A2*cos(2*pi*f2*stim_tt+phi1);
+I1_stim(a,:) = A1*square(2*pi*f1*stim_tt,50) + A2*square(2*pi*f2*stim_tt,50);
 
 if ramp_up_t
     ramp_up_size = round(ramp_up_t/dt);

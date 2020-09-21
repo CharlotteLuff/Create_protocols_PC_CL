@@ -16,6 +16,7 @@ s2 = {'1_df5_2ep' ,'1_df10_2ep','1_df40_2ep'}; % define df
 for x = 1:length(df)
 freq_pairs = [df(x), df(x); 7 , 7 + df(x); 47, 47 + df(x); 97, 97 + df(x); 497, 497 + df(x); 997, 997 + df(x); 2497, 2497 + df(x); 4997, 4997 + df(x)];   
 random_freq_pairs_1.(char(sf(x))) = freq_pairs(randperm(size(freq_pairs, 1)), :);
+% random_freq_pairs_1.(char(sf(x))) =[df(x), df(x); 7 , 7 + df(x); 47, 47 + df(x); 97, 97 + df(x); 497, 497 + df(x); 997, 997 + df(x); 2497, 2497 + df(x); 4997, 4997 + df(x)];
 end
 
 one_five_hz = random_freq_pairs_1.df5;

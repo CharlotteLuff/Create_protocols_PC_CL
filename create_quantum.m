@@ -5,7 +5,7 @@ clc
 %% Stimulation signal script
 
 % Create stimulation protocol_1 with a random order 
-amp = [0.1, 0.3; 0.1, 0.45; 0.1, 0.6; 0.05, 0.6; 0.15, 0.2; 0.2, 0.6]; %
+amp = [0.1, 0.3; 0.1, 0.45; 0.1, 0.6; 0.05, 0.6; 0.15, 0.2; 0.2, 0.6];
 for x = 1:length(amp)
 random_amp_pairs_1= amp(randperm(size(amp, 1)), :);
 end
